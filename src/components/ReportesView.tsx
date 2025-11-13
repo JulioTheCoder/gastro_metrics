@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Plus, ShoppingCart, Calendar, TrendingUp } from "lucide-react";
 import { getVentas, getPlatos, createVenta, type Venta, type Plato, calcularCostoPlato, getIngredientes } from "../lib/api";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 export function ReportesView() {
   const [ventas, setVentas] = useState<Venta[]>([]);
@@ -141,7 +141,7 @@ export function ReportesView() {
                 <Label>Plato *</Label>
                 <Select
                   value={formData.platoId}
-                  onValueChange={(value) => setFormData({ ...formData, platoId: value })}
+                  onValueChange={(value: string) => setFormData({ ...formData, platoId: value })}
                 >
                   <SelectTrigger className="bg-[#2A2A2A] border-gray-700 text-white">
                     <SelectValue placeholder="Seleccione un plato" />

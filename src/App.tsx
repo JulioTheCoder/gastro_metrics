@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import { Landing } from "./components/Landing";
 import { Sidebar } from "./components/Sidebar";
@@ -9,42 +9,35 @@ import { CostosView } from "./components/CostosView";
 import { ReportesView } from "./components/ReportesView";
 import { ConfiguracionView } from "./components/ConfiguracionView";
 
-export default function App() {
-  const [view, setView] = useState<'landing' | 'dashboard'>('landing');
-  const [activeTab, setActiveTab] = useState('dashboard');
-
-  if (view === 'landing') {
-    return <Landing onEnterDashboard={() => setView('dashboard')} />;
-  }
-
-  function renderContent() {
-    switch (activeTab) {
-      case 'dashboard':
-        return <Dashboard />;
-      case 'platos':
-        return <PlatosView />;
-      case 'costos':
-        return <CostosView />;
-      case 'reportes':
-        return <ReportesView />;
-      case 'configuracion':
-        return <ConfiguracionView />;
-      default:
-        return <Dashboard />;
-    }
-  }
-
+function DashboardLayout() {
   return (
-    <>
-      <div className="h-screen flex bg-[#0F0F0F] text-white overflow-hidden">
-        <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <DashboardHeader />
-          {renderContent()}
-        </div>
+    <div className="h-screen flex bg-[#0F0F0F] text-white overflow-hidden">
+      <Sidebar />
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <DashboardHeader />
+        <Outlet />
       </div>
-      <Toaster 
-        theme="dark" 
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="platos" element={<PlatosView />} />
+          <Route path="costos" element={<CostosView />} />
+          <Route path="reportes" element={<ReportesView />} />
+          <Route path="configuracion" element={<ConfiguracionView />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+
+      <Toaster
+        theme="dark"
         position="top-right"
         toastOptions={{
           style: {
@@ -54,6 +47,6 @@ export default function App() {
           },
         }}
       />
-    </>
+    </BrowserRouter>
   );
 }

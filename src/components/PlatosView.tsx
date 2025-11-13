@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Plus, Edit, Trash2, TrendingUp, TrendingDown } from "lucide-react";
 import { getPlatos, getIngredientes, createPlato, updatePlato, deletePlato, calcularCostoPlato, calcularMargen, type Plato, type Ingrediente, type PlatoIngrediente } from "../lib/api";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 export function PlatosView() {
   const [platos, setPlatos] = useState<Plato[]>([]);
@@ -228,7 +228,7 @@ export function PlatosView() {
                     <div key={index} className="flex gap-2 items-center bg-[#2A2A2A] p-2 rounded-lg">
                       <Select
                         value={ing.ingredienteId}
-                        onValueChange={(value) => updateIngrediente(index, 'ingredienteId', value)}
+                        onValueChange={(value: string) => updateIngrediente(index, 'ingredienteId', value)}
                       >
                         <SelectTrigger className="flex-1 bg-[#1B1B1B] border-gray-700 text-white">
                           <SelectValue />

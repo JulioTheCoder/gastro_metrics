@@ -1,11 +1,9 @@
 import { Button } from "./ui/button";
 import { ArrowRight, BarChart3, TrendingUp, PieChart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-interface LandingProps {
-  onEnterDashboard: () => void;
-}
-
-export function Landing({ onEnterDashboard }: LandingProps) {
+export function Landing() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#1B1B1B] text-white">
       {/* Hero Section */}
@@ -47,7 +45,7 @@ export function Landing({ onEnterDashboard }: LandingProps) {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  onClick={onEnterDashboard}
+                  onClick={() => navigate('/dashboard')}
                   className="bg-gradient-to-r from-[#F5B041] to-[#F5B041]/80 hover:from-[#F5B041]/90 hover:to-[#F5B041]/70 text-[#1B1B1B] px-8 py-6 rounded-xl shadow-lg shadow-[#F5B041]/20 transition-all duration-300 hover:shadow-[#F5B041]/40 hover:scale-105"
                 >
                   Entrar al Dashboard
