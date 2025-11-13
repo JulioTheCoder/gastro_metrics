@@ -8,6 +8,7 @@ import { PlatosView } from "./components/PlatosView";
 import { CostosView } from "./components/CostosView";
 import { ReportesView } from "./components/ReportesView";
 import { ConfiguracionView } from "./components/ConfiguracionView";
+import { CalculadoraView } from "./components/CalculadoraView";
 
 function DashboardLayout() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="platos" element={<PlatosView />} />
+          <Route path="calculadora" element={<CalculadoraView />} />
           <Route path="costos" element={<CostosView />} />
           <Route path="reportes" element={<ReportesView />} />
           <Route path="configuracion" element={<ConfiguracionView />} />

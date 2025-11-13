@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { BarChart3, UtensilsCrossed, DollarSign, TrendingUp, Settings, X } from "lucide-react";
+import { BarChart3, UtensilsCrossed, DollarSign, TrendingUp, Settings, X, Calculator } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import {
@@ -19,6 +19,7 @@ export function Sidebar() {
   const menuItems = [
     { id: 'dashboard', icon: BarChart3, label: 'Dashboard' },
     { id: 'platos', icon: UtensilsCrossed, label: 'Platos' },
+    { id: 'calculadora', icon: Calculator, label: 'Calculadora' },
     { id: 'costos', icon: DollarSign, label: 'Costos' },
     { id: 'reportes', icon: TrendingUp, label: 'Reportes' },
     { id: 'configuracion', icon: Settings, label: 'Configuración' },
